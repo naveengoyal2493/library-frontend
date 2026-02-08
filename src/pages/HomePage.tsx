@@ -144,6 +144,35 @@ const handleBorrow = async (bookId: number) => {
   }
 };
 
+/* -------------------- RETURN BOOK -------------------- */
+
+const handleReturn = async (loanId: number) => {
+  const confirmReturn = window.confirm(
+    "Are you sure you want to return this book?"
+  );
+
+  if (!confirmReturn) return;
+
+  try {
+    const res = await fetch(`${BASE_URL}/loans/${loanId}/return`, {
+      method: "PATCH", // change if your API differs
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.detail || "Failed to return book");
+    }
+
+    alert("Book returned successfully");
+
+    fetchDashboardData(); // refresh UI
+  } catch (err) {
+    if (err instanceof Error) {
+      alert(err.message);
+    }
+  }
+};
+
   /* -------------------- DELETE -------------------- */
 
   const handleDelete = async ({
@@ -375,7 +404,8 @@ const handleBorrow = async (bookId: number) => {
           <th style={thStyle}>Book ID</th>
           <th style={thStyle}>Member ID</th>
           <th style={thStyle}>Borrowed</th>
-          <th style={thStyle}>Returned</th>
+        <th style={thStyle}>Returned</th>
+        <th style={thStyle}>Actions</th>
         </tr>
       </thead>
 
@@ -398,6 +428,24 @@ const handleBorrow = async (bookId: number) => {
                 ? new Date(loan.returned_at).toLocaleDateString()
                 : "Not Returned"}
             </td>
+            <td style={tdStyle}>
+              {!loan.returned_at && (
+                <button
+                  style={{
+                    background: "#1890ff",
+                    color: "white",
+                    border: "none",
+                    padding: "6px 10px",
+                    cursor: "pointer",
+                    borderRadius: "4px",
+                  }}
+                  onClick={() => handleReturn(loan.id)}
+                >
+                  Return
+                </button>
+              )}
+            </td>
+
           </tr>
         ))}
       </tbody>
