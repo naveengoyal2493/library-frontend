@@ -56,7 +56,3 @@ http://localhost:8000
 
 Defined inside:
 const BASE_URL = "http://localhost:8000";
-├── pages/
-│     └── HomePage.tsx
-│
-└── main.tsx
