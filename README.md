@@ -1,5 +1,5 @@
 **Library Management System – Frontend**
-A modern React + TypeScript frontend for the Library Management System that allows librarians to manage books, members, and borrowing operations through a simple dashboard UI.
+This is React + TypeScript frontend for the Library Management System that allows librarians to manage books, members, and borrowing operations through a simple dashboard UI.
 This project communicates with a FastAPI backend and provides full CRUD functionality with a clean user experience.
 
 **Features**
@@ -35,8 +35,8 @@ nvm use 25
 
 **Setup Instructions**
 **Clone the Repository**
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/naveengoyal2493/library-frontend.git
+cd library-frontend
 
 
 **Install Dependencies**
@@ -56,16 +56,6 @@ http://localhost:8000
 
 Defined inside:
 const BASE_URL = "http://localhost:8000";
-
-If your backend runs elsewhere, update this value.
-
-**Project Structure**
-src/
-├── components/
-│     ├── AddBookModal
-│     ├── AddMemberModal
-│     └── EntityFormModal
-│
 ├── pages/
 │     └── HomePage.tsx
 │
