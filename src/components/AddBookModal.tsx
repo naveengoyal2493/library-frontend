@@ -8,7 +8,6 @@ type Props = {
 export default function AddBookModal({ onClose, onSuccess }: Props) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [copies, setCopies] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async () => {
@@ -23,7 +22,6 @@ export default function AddBookModal({ onClose, onSuccess }: Props) {
         body: JSON.stringify({
           title,
           author,
-          copies,
         }),
       });
 
@@ -71,14 +69,6 @@ export default function AddBookModal({ onClose, onSuccess }: Props) {
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
-          style={input}
-        />
-
-        <input
-          type="number"
-          placeholder="Copies"
-          value={copies}
-          onChange={(e) => setCopies(Number(e.target.value))}
           style={input}
         />
 
